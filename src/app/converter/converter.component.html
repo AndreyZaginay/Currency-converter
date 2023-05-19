@@ -1,0 +1,13 @@
+<header>
+  <div *ngIf="dollarRexchangeRate$ | async as dollarRexchangeRate">
+    <span>USD:{{ dollarRexchangeRate }}</span>
+  </div>
+  <div *ngIf="euroRexchangeRate$ | async as euroRexchangeRate">
+    <span>EUR:{{ euroRexchangeRate }}</span>
+  </div>
+</header>
+<div>
+  <select name="" id="">
+    <option></option>
+  </select>
+</div>
