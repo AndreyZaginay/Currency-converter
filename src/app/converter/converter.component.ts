@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, map } from 'rxjs';
+
 import { CurrencyApiService } from './services/currency-api.service';
-import { Observable, filter, map, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-converter',
@@ -8,21 +9,21 @@ import { Observable, filter, map, switchMap } from 'rxjs';
   styleUrls: ['./converter.component.scss']
 })
 export class ConverterComponent implements OnInit{
-  public dollarRexchangeRate$!: Observable<string>;
-  public euroRexchangeRate$!: Observable<string>;
-  // public currencyList$!: Observable<> 
+  // public dollarExchangeRate$: Observable<string> = this.currencyApiService.getConvertedCurrency('USD', 'UAH', 1).pipe(
+  //   map(result => result.new_amount)
+  // );
+  // public euroExchangeRate$: Observable<string> = this.currencyApiService.getConvertedCurrency('EUR', 'UAH', 1).pipe(
+  //   map(result => result.new_amount)
+  // );
 
-  constructor (private readonly currencyApiCurrency: CurrencyApiService) {}
+  public currencies: string[] = ['UAH', 'USD', 'EUR'];
+
+  constructor (private readonly currencyApiService: CurrencyApiService) {}
 
   ngOnInit(): void {
-    this.currencyApiCurrency.getCurrencies().subscribe(console.log);
-    this.dollarRexchangeRate$ = this.getCurrency('USD');
-    this.euroRexchangeRate$ = this.getCurrency('EUR');
   }
 
-  getCurrency(currency: string) {
-    return this.currencyApiCurrency.getStatickCurrency(currency).pipe(
-      map(({rates}: any) => (rates.UAH.toFixed(2)))
-    )
+  getCurrency() {
+    
   }
 }

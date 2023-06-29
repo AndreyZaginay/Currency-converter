@@ -1,13 +1,32 @@
-<header>
-  <div *ngIf="dollarRexchangeRate$ | async as dollarRexchangeRate">
-    <span>USD:{{ dollarRexchangeRate }}</span>
-  </div>
-  <div *ngIf="euroRexchangeRate$ | async as euroRexchangeRate">
-    <span>EUR:{{ euroRexchangeRate }}</span>
-  </div>
-</header>
 <div>
-  <select name="" id="">
-    <option></option>
-  </select>
+  <mat-form-field>
+    <mat-label>From</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let currency of currencies" [value]="currency">
+        {{ currency }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <!-- <mat-form-field class="example-form-field">
+    <mat-label>Enter amount</mat-label>
+    <input matInput type="text" [(ngModel)]="value" />
+    <button
+      *ngIf="value"
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="value = ''"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field> -->
+  <mat-form-field>
+    <mat-label>To</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let currency of currencies" [value]="currency">
+        {{ currency }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button color="primary">Convert</button>
 </div>
