@@ -23,6 +23,6 @@ export class CurrencyApiService {
       }
     } as HttpParamsOptions;
     const params = new HttpParams(options);
-    return this.http.get<Currency>(`${this.api}`, {params: params, headers: {'X-Api-Key': this.apiKey}});
+    return this.http.get<Currency>(`${this.api}`, {params, headers: {'X-Api-Key': this.apiKey}});
   }
 }
