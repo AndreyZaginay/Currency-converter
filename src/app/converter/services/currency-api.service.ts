@@ -3,6 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 
 import { CURRENCY_API } from '../tokens/currency.api';
+import { Currency } from '../models/currency';
 
 @Injectable({
   providedIn: 'root'
@@ -13,25 +14,15 @@ export class CurrencyApiService {
 
   constructor(private readonly http: HttpClient, @Inject(CURRENCY_API) private readonly api: string) { }
 
-  getCurrencies(): Observable<any> {
+  getConvertedCurrency(mainCurrency: string, convertedCurrency: string, amount: number): Observable<Currency> {
     const options = {
-      fromObject: {   
-        apikey: this.apiKey
+      fromObject: {
+        want: convertedCurrency,
+        have: mainCurrency,
+        amount: amount
       }
     } as HttpParamsOptions;
     const params = new HttpParams(options);
-    return this.http.get<any>(`${this.api}`, {params})
-  }
-
-  getConvertedCurrency(mainCurrency: string, convertedCurrency: string, amount: number) {
-    // const options = {
-    //   fromObject: {   
-    //     apikey: this.apiKey
-    //   }
-    // } as HttpParamsOptions;
-    // const params = new HttpParams(options);
-    return this.http.get<any>(`${this.api}?want=${convertedCurrency}&have=${mainCurrency}&amount=${amount}`, {headers: {'X-Api-Key': this.apiKey}});
+    return this.http.get<Currency>(`${this.api}`, {params: params, headers: {'X-Api-Key': this.apiKey}});
   }
 }
-
-
