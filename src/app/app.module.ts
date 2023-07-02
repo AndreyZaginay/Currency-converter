@@ -8,10 +8,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ConverterComponent } from './converter/converter.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,9 +25,11 @@ import { ConverterComponent } from './converter/converter.component';
     AppRoutingModule,
     HttpClientModule,
     RouterModule,
+    FormsModule,
     MatSelectModule,
     MatIconModule,
     MatFormFieldModule,
+    MatToolbarModule,
     MatInputModule,
     MatButtonModule,
     BrowserAnimationsModule
